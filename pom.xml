@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>cn.stronger.we</groupId>
+    <artifactId>microservice-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>microservice-parent</name>
+    <description>微服务脚手架</description>
+
+    <modules>
+        <module>microservice-commons</module>
+        <module>microservice-mybatis</module>
+        <module>microservice-redis</module>
+        <module>microservice-logs</module>
+        <module>microservice-openfeign</module>
+    </modules>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.12.RELEASE</version>
+        <relativePath/><!-- lookup parent from repository -->
+    </parent>
+
+    <properties>
+        <!-- Project revision -->
+        <reversion>1.0.0-SNAPSHOT</reversion>
+        <!-- Spring Boot-->
+        <spring-boot.version>2.3.12.RELEASE</spring-boot.version>
+        <!-- Spring Cloud -->
+        <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
+        <!-- Spring Cloud Alibaba Nacos-->
+        <nacos.version>2.1.0</nacos.version>
+        <!-- Spring Cloud Alibaba-->
+        <spring-cloud-alibaba.version>2.2.9.RELEASE</spring-cloud-alibaba.version>
+        <!-- Dubbo -->
+        <dubbo.version>2.7.13</dubbo.version>
+        <!-- Cola -->
+        <cola.version>4.3.1</cola.version>
+        <xxl-job.version>2.4.0-SNAPSHOT</xxl-job.version>
+        <!-- Redisson -->
+        <redisson.version>3.17.4</redisson.version>
+        <!-- Mybatis -->
+        <mybatis.version>1.3.1</mybatis.version>
+        <!-- Mybatis-Plus -->
+        <mybatis-plus.version>3.4.0</mybatis-plus.version>
+        <!-- Page Helper -->
+        <pagehelper.version>5.1.4</pagehelper.version>
+        <pagehelper-springboot.version>1.2.5</pagehelper-springboot.version>
+        <!-- Mysql-Connector -->
+        <mysql-connector.version>8.0.30</mysql-connector.version>
+        <!-- rocketmq-client -->
+        <roactmq-client.version>4.9.3</roactmq-client.version>
+        <!-- Swagger -->
+        <swagger.version>2.9.2</swagger.version>
+        <swagger-ui.version>1.9.6</swagger-ui.version>
+        <!-- Lombok -->
+        <lombok.version>1.18.16</lombok.version>
+        <!-- Commons Lang3 -->
+        <commons-lang3.version>3.9</commons-lang3.version>
+        <!-- FastJson -->
+        <fastjson.version>1.2.75</fastjson.version>
+        <!-- junit -->
+        <junit.version>4.13.1</junit.version>
+        <sleuth.version>3.0.4</sleuth.version>
+        <!-- Plume Log -->
+        <plumelog.version>3.5.3</plumelog.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Spring Cloud -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Spring Cloud End -->
+
+            <!-- Spring Cloud Alibaba  -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.alibaba.nacos</groupId>
+                        <artifactId>nacos-client</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.nacos</groupId>
+                <artifactId>nacos-client</artifactId>
+                <version>${nacos.version}</version>
+            </dependency>
+            <!-- Spring Cloud Alibaba End -->
+
+            <!-- Dubbo Boot -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>${dubbo.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <!-- Dubbo Boot End -->
+
+            <!-- Rocketmq -->
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-client</artifactId>
+                <version>${roactmq-client.version}</version>
+            </dependency>
+            <!-- Rocketmq End -->
+
+            <!-- Mysql Connector -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector.version}</version>
+            </dependency>
+            <!-- Mysql Connector End -->
+
+            <!-- Mybatis Plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>${pagehelper.version}</version>
+            </dependency>
+            <!-- pagehelper -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper-springboot.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.mybatis</groupId>
+                        <artifactId>mybatis</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.mybatis</groupId>
+                        <artifactId>mybatis-spring</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>pagehelper</artifactId>
+                        <groupId>com.github.pagehelper</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <!-- Mybatis End -->
+
+            <!-- Redisson -->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
+            <!-- Redisson End -->
+
+            <!-- Lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <!-- Lombok End -->
+
+            <!-- Common Lang3 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+            <!-- Common Lang3 End -->
+
+            <!-- FastJson -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <!-- FastJson End -->
+
+            <!-- Junit -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- Junit End -->
+
+            <!-- Swagger -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>swagger-bootstrap-ui</artifactId>
+                <version>${swagger-ui.version}</version>
+            </dependency>
+            <!-- Swagger End -->
+
+            <!-- Plume Log 链路追踪 -->
+            <dependency>
+                <groupId>com.plumelog</groupId>
+                <artifactId>plumelog-dubbo</artifactId>
+                <version>${plumelog.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.apache.dubbo</groupId>
+                        <artifactId>dubbo</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.plumelog</groupId>
+                <artifactId>plumelog-trace</artifactId>
+                <version>${plumelog.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-aop</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.plumelog</groupId>
+                <artifactId>plumelog-logback</artifactId>
+                <version>${plumelog.version}</version>
+            </dependency>
+            <!-- Plume Log 链路追踪 End -->
+
+            <!--COLA Components-->
+            <dependency>
+                <groupId>com.alibaba.cola</groupId>
+                <artifactId>cola-component-domain-starter</artifactId>
+                <version>${cola.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cola</groupId>
+                <artifactId>cola-component-exception</artifactId>
+                <version>${cola.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cola</groupId>
+                <artifactId>cola-component-dto</artifactId>
+                <version>${cola.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cola</groupId>
+                <artifactId>cola-component-catchlog-starter</artifactId>
+                <version>${cola.version}</version>
+            </dependency>
+            <!--COLA Components End-->
+
+            <dependency>
+                <groupId>com.xuxueli</groupId>
+                <artifactId>xxl-job-core</artifactId>
+                <version>${xxl-job.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
