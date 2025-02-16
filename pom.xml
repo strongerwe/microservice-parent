@@ -18,6 +18,7 @@
         <module>microservice-openfeign</module>
         <module>microservice-encrypt</module>
         <module>microservice-k8s</module>
+        <module>microservice-service-parent</module>
     </modules>
 
     <parent>
@@ -280,7 +281,6 @@
                 <artifactId>xxl-job-core</artifactId>
                 <version>${xxl-job.version}</version>
             </dependency>
-
             <!-- this starts -->
             <dependency>
                 <groupId>cn.stronger.we</groupId>
