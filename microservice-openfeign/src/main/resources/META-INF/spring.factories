@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+cn.stronger.we.openfeign.GlobalOpenFeignAutoConfiguration,\
+cn.stronger.we.openfeign.LocalDateTimeSerializerConfig

@@ -1,0 +1,7 @@
+jasypt:
+  encryptor:
+    password: ${jasypt.password:ENC257257Cola@257}
+    property:
+      prefix: ENCRYPT(
+      suffix: )
+    pool-size: 2

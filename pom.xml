@@ -16,6 +16,8 @@
         <module>microservice-redis</module>
         <module>microservice-logs</module>
         <module>microservice-openfeign</module>
+        <module>microservice-encrypt</module>
+        <module>microservice-k8s</module>
     </modules>
 
     <parent>
@@ -277,6 +279,38 @@
                 <groupId>com.xuxueli</groupId>
                 <artifactId>xxl-job-core</artifactId>
                 <version>${xxl-job.version}</version>
+            </dependency>
+
+            <!-- this starts -->
+            <dependency>
+                <groupId>cn.stronger.we</groupId>
+                <artifactId>microservice-commons</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.stronger.we</groupId>
+                <artifactId>microservice-logs</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.stronger.we</groupId>
+                <artifactId>microservice-mybatis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.stronger.we</groupId>
+                <artifactId>microservice-redis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.stronger.we</groupId>
+                <artifactId>microservice-openfeign</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.stronger.we</groupId>
+                <artifactId>microservice-encrypt</artifactId>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

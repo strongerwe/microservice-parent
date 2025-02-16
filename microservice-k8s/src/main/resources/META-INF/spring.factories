@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+cn.stronger.we.k8s.PreStopEndpoint,\
+cn.stronger.we.k8s.RegistryEndpoint
