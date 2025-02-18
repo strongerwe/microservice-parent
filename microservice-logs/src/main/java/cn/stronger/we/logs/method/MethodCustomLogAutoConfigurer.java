@@ -47,6 +47,7 @@ public class MethodCustomLogAutoConfigurer {
     @Around("@annotation(methodCustomLog)")
     public Object aroundLog(ProceedingJoinPoint joinPoint, MethodCustomLog methodCustomLog) throws Throwable {
         long beginTime = System.currentTimeMillis();
+        String traceId = StringTools.newUuid().substring(16);
         try {
             StringBuilder methodMsg = getMethodMsg(joinPoint, methodCustomLog);
             if (StringTools.isNotNullOrNotEmpty(methodMsg)) {
@@ -70,23 +71,24 @@ public class MethodCustomLogAutoConfigurer {
                         }
                     }
                 }
-                log("{}|请求入参:{}", methodMsg.toString(), subMaxMessage(paramToString));
+
+                log("{}|{}|请求入参:{}", methodMsg.toString(), traceId, subMaxMessage(paramToString));
                 Object result = joinPoint.proceed();
                 long endTime = System.currentTimeMillis();
                 long time = endTime - beginTime;
-                log("{}|响应结果[{}ms]:{}", methodMsg.toString(), time, subMaxMessage(JsonTools.toJson(result)));
+                log("{}|{}|响应结果[{}ms]:{}", methodMsg.toString(), traceId, time, subMaxMessage(JsonTools.toJson(result)));
                 return result;
             }
             return joinPoint.proceed();
         } catch (CustomException e) {
             StringBuilder methodMsg = getMethodMsg(joinPoint, methodCustomLog);
             long time = System.currentTimeMillis() - beginTime;
-            log.info("{}|业务异常[{}ms]:{}", methodMsg, time, subMaxMessage(JsonTools.toJson((e).restResult())));
+            log.info("{}|{}|业务异常[{}ms]:{}", methodMsg, traceId, time, subMaxMessage(JsonTools.toJson((e).restResult())));
             throw e;
         } catch (Throwable e) {
             StringBuilder methodMsg = getMethodMsg(joinPoint, methodCustomLog);
             long time = System.currentTimeMillis() - beginTime;
-            log.warn("{}|未知异常[{}ms]:{} ", methodMsg, time, e.getMessage());
+            log.warn("{}|{}|未知异常[{}ms]:{} ", methodMsg, traceId, time, e.getMessage());
             throw e;
         }
     }
