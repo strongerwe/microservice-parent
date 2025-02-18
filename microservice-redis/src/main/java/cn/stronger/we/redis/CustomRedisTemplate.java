@@ -11,15 +11,15 @@ import java.util.concurrent.TimeUnit;
  * @author qiang.w
  * @version 1.0.0
  * @class redisTemplate
- * @department 平台研发部
+ * @department Platform Center
  * @date 2024-09-20 21:35
  */
 @Slf4j
-public class MatchRedisTemplate implements IMatchRedisTemplate {
+public class CustomRedisTemplate implements ICustomRedisTemplate {
 
     protected final StringRedisTemplate stringRedisTemplate;
 
-    public MatchRedisTemplate(StringRedisTemplate stringRedisTemplate) {
+    public CustomRedisTemplate(StringRedisTemplate stringRedisTemplate) {
         this.stringRedisTemplate = stringRedisTemplate;
     }
 

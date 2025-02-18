@@ -6,10 +6,10 @@ import java.util.Map;
  * @author qiang.w
  * @version 1.0.0
  * @interface IMatchRedisTemplate
- * @department 平台研发部
+ * @department Platform Center
  * @date 2024-09-20 21:36
  */
-public interface IMatchRedisTemplate {
+public interface ICustomRedisTemplate {
 
     /**
      * redis 常用 失效时间

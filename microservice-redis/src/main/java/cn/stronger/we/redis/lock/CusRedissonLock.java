@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
  * @author qiang.w
  * @version 1.0.0
  * @annotation do what?
- * @department 平台研发部
+ * @department Platform Center
  * @date 2024-09-21 08:59
  */
 @Retention(RetentionPolicy.RUNTIME)

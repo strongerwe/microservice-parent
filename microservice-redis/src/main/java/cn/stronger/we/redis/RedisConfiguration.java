@@ -15,7 +15,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @author qiang.w
  * @version 1.0.0
  * @class Redis启动配置
- * @department 平台研发部
+ * @department Platform Center
  * @date 2024-09-20 17:21
  */
 @Slf4j
@@ -34,9 +34,9 @@ public class RedisConfiguration {
     }
 
     @Bean
-    public MatchRedisTemplate matchRedisTemplate(StringRedisTemplate stringRedisTemplate) {
-        log.info(">>>>>>>> MatchRedisTemplate [Redis操作工具类] Bean Create Success!");
-        return new MatchRedisTemplate(stringRedisTemplate);
+    public CustomRedisTemplate customRedisTemplate(StringRedisTemplate stringRedisTemplate) {
+        log.info(">>>>>>>> CustomRedisTemplate [Redis操作工具类] Bean Create Success!");
+        return new CustomRedisTemplate(stringRedisTemplate);
     }
 
     @Bean

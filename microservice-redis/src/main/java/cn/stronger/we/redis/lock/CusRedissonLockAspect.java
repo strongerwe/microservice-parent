@@ -26,7 +26,7 @@ import java.util.Objects;
  * @author qiang.w
  * @version 1.0.0
  * @class 分布式锁注解Aspect
- * @department 平台研发部
+ * @department Platform Center
  * @date 2024-09-21 09:04
  */
 @Slf4j
