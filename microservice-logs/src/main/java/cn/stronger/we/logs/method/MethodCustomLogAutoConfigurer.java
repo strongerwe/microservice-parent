@@ -24,7 +24,7 @@ import java.lang.reflect.Method;
  * @author qiang.w
  * @version 1.0.0
  * @class AOP实现方法出入参日志打印
- * @department 平台研发部
+ * @department Platform Center
  * @date 2024-08-21 17:25
  */
 @Slf4j

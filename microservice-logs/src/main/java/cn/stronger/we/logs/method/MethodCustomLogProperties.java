@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author qiang.w
  * @version 1.0.0
  * @class 自定义日志配置参数类
- * @department 平台研发部
+ * @department Platform Center
  * @date 2024-08-21 17:19
  */
 @Getter
