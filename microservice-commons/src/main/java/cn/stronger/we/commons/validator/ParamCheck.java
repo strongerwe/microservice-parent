@@ -14,7 +14,7 @@ import java.util.Collection;
  * @date 2024/07/28
  */
 @NoArgsConstructor
-public class MatchCheck {
+public class ParamCheck {
 
     /**
      * 验证expression是否为True

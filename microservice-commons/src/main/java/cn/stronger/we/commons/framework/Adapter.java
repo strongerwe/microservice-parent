@@ -1,7 +1,5 @@
 package cn.stronger.we.commons.framework;
 
-import cn.stronger.we.commons.framework.request.RestRequest;
-
 /**
  * @author qiang.w
  * @version 1.0.0
@@ -16,9 +14,9 @@ public interface Adapter<IN> {
      *
      * @param in         in
      * @param bizExecute bizExecute
-     * @return {@link RestRequest }<{@link IN }>
+     * @return {@link RestResult }<{@link IN }>
      */
-    RestRequest<IN> adapter(IN in, BizExecuteEnumI bizExecute);
+    RestResult<IN> adapter(IN in, AbstractApiBizEnum bizExecute);
 
     /**
      * me

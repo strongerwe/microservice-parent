@@ -1,9 +1,10 @@
 package cn.stronger.we.commons.framework.request;
 
-import cn.stronger.we.commons.utils.DateTimeTools;
-import cn.stronger.we.commons.utils.StringTools;
+import cn.stronger.we.commons.framework.AbstractApiBizEnum;
+import cn.stronger.we.commons.framework.response.SuperResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
@@ -18,30 +19,16 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public abstract class AbstractApiRequest implements RestRequestI {
+@EqualsAndHashCode(callSuper = true)
+public abstract class AbstractApiRequest<T extends SuperResponse> extends AbstractRequest<T> {
 
     /**
-     * 请求系统来源
+     * 业务API枚举
      */
-    private String requestSystemSource;
+    private AbstractApiBizEnum frameBizEnum;
 
     /**
-     * 请求ID（单次请求唯一）
+     * 机构Code
      */
-    private String interfaceRequestId = newRequestId();
-
-    /**
-     * 请求执行器
-     */
-    private String interfaceExecute;
-
-    /**
-     * 请求接口版本号(默认Base，即为基础版本)
-     */
-    private String interfaceVersion = "Base";
-
-
-    private String newRequestId() {
-        return "Api-" + DateTimeTools.getCurrentDateTimes() + "-" + StringTools.newUuid().substring(0, 6);
-    }
+    private String orgCode;
 }

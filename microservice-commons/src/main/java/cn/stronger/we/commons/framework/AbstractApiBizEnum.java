@@ -2,13 +2,15 @@ package cn.stronger.we.commons.framework;
 
 /**
  * @author qiang.w
- * @version 1.0.0
- * @interface 业务配置基础枚举
- * @department Platform Center
- * @date 2024-07-28 00:08
+ * @version release-1.0.0
+ * @enum AbstractApiBizEnum.class
+ * @department Platform R&D
+ * @date 2025/2/22
+ * @desc 抽象业务枚举
  */
-public interface BizExecuteEnumI {
+public interface AbstractApiBizEnum {
 
+    String DEFAULT_EXE = "Def";
     String EXE = "Exe";
     String ADAPTER = "Adapter";
 
@@ -18,25 +20,12 @@ public interface BizExecuteEnumI {
 
     String getExe();
 
-    String getApiName();
-
-    /**
-     * 获取API BeanName
-     *
-     * @param api     api
-     * @param version version
-     * @return {@link String}
-     */
-    static String getCmdExe(BizExecuteEnumI api, String version) {
-        return api.getBiz() + api.getApi() + version + api.getExe() + EXE;
-    }
-
     /**
      * 获取适配器自身标识
      *
      * @return {@link String }
      */
-    default String getBizAdapter() {
+    default String getAdapterMe() {
         return this.getBizExe() + ADAPTER;
     }
 

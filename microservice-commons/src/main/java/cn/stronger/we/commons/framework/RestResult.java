@@ -1,8 +1,8 @@
 package cn.stronger.we.commons.framework;
 
 import cn.stronger.we.commons.exception.CustomException;
-import cn.stronger.we.commons.framework.request.RestRequestI;
-import cn.stronger.we.commons.framework.response.RestResponseDataI;
+import cn.stronger.we.commons.framework.request.*;
+import cn.stronger.we.commons.framework.response.SuperResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,22 +28,26 @@ public class RestResult<DATA> implements Serializable {
      * 响应代号
      */
     private String code;
+
     /**
      * 响应信息
      */
     private String message;
+
     /**
      * 响应数据
      */
     private DATA data;
+
     /**
      * 业务执行器
      */
-    private String execute;
+    private String frameBizExecute;
+
     /**
      * 请求ID
      */
-    private String requestId;
+    private String frameRequestId;
 
     /**
      * 无DATA响应静态成功方法
@@ -60,8 +64,22 @@ public class RestResult<DATA> implements Serializable {
      * @param request request
      * @return {@link RestResult }<{@link Void }>
      */
-    public static RestResult<Void> voidSuccess(RestRequestI request) {
-        return voidSuccess().setExecute(request.getInterfaceExecute()).setRequestId(request.getInterfaceRequestId());
+    public static RestResult<Void> voidSuccess(AbstractAdminRequest<?> request) {
+        return voidSuccess()
+                .setFrameBizExecute(request.getFrameExecute())
+                .setFrameRequestId(request.getFrameRequestId());
+    }
+
+    public static RestResult<Void> voidSuccess(AbstractAdminPageRequest<?> request) {
+        return voidSuccess()
+                .setFrameBizExecute(request.getFrameExecute())
+                .setFrameRequestId(request.getFrameRequestId());
+    }
+
+    public static RestResult<Void> voidSuccess(ApiIncome<?> request) {
+        return voidSuccess()
+                .setFrameBizExecute(request.getFrameExecute())
+                .setFrameRequestId(request.getFrameRequestId());
     }
 
     /**
@@ -79,7 +97,7 @@ public class RestResult<DATA> implements Serializable {
      * @param data data
      * @return {@link RestResult }<{@link ? }>
      */
-    public static RestResult<RestResponseDataI> success(RestResponseDataI data) {
+    public static RestResult<SuperResponse> success(SuperResponse data) {
         return new RestResult<>(ResultErrCodeI.SUCCESS_CODE, ResultErrCodeI.SUCCESS_MSG, data);
     }
 
@@ -90,8 +108,19 @@ public class RestResult<DATA> implements Serializable {
      * @param data data
      * @return {@link RestResult }<{@link ? }>
      */
-    public static RestResult<?> success(RestResponseDataI data, RestRequestI request) {
-        return success(data).setRequestId(request.getInterfaceRequestId()).setExecute(request.getInterfaceExecute());
+    public static RestResult<?> success(SuperResponse data, AbstractAdminRequest<?> request) {
+        return success(data).setFrameRequestId(request.getFrameRequestId())
+                .setFrameBizExecute(request.getFrameExecute());
+    }
+
+    public static RestResult<?> success(SuperResponse data, AbstractAdminPageRequest<?> request) {
+        return success(data).setFrameRequestId(request.getFrameRequestId())
+                .setFrameBizExecute(request.getFrameExecute());
+    }
+
+    public static RestResult<?> success(SuperResponse data, ApiIncome<?> request) {
+        return success(data).setFrameRequestId(request.getFrameRequestId())
+                .setFrameBizExecute(request.getFrameExecute());
     }
 
     /**
@@ -111,9 +140,19 @@ public class RestResult<DATA> implements Serializable {
      * @param request request
      * @return {@link RestResult }<{@link DATA }>
      */
-    public static <DATA> RestResult<DATA> success(DATA data, RestRequestI request) {
+    public static <DATA> RestResult<DATA> success(DATA data, AbstractAdminRequest<?> request) {
         return new RestResult<>(ResultErrCodeI.SUCCESS_CODE, ResultErrCodeI.SUCCESS_MSG, data)
-                .setRequestId(request.getInterfaceRequestId()).setExecute(request.getInterfaceExecute());
+                .setFrameRequestId(request.getFrameRequestId()).setFrameBizExecute(request.getFrameExecute());
+    }
+
+    public static <DATA> RestResult<DATA> success(DATA data, AbstractAdminPageRequest<?> request) {
+        return new RestResult<>(ResultErrCodeI.SUCCESS_CODE, ResultErrCodeI.SUCCESS_MSG, data)
+                .setFrameRequestId(request.getFrameRequestId()).setFrameBizExecute(request.getFrameExecute());
+    }
+
+    public static <DATA> RestResult<DATA> success(DATA data, ApiIncome<?> request) {
+        return new RestResult<>(ResultErrCodeI.SUCCESS_CODE, ResultErrCodeI.SUCCESS_MSG, data)
+                .setFrameRequestId(request.getFrameRequestId()).setFrameBizExecute(request.getFrameExecute());
     }
 
     /**
@@ -133,8 +172,16 @@ public class RestResult<DATA> implements Serializable {
      * @param request       request
      * @return {@link RestResult }<{@link Void }>
      */
-    public static RestResult<Void> voidFail(ResultErrCodeI resultErrCode, RestRequestI request) {
-        return voidFail(resultErrCode).setExecute(request.getInterfaceExecute()).setRequestId(request.getInterfaceRequestId());
+    public static RestResult<Void> voidFail(ResultErrCodeI resultErrCode, AbstractAdminRequest<?> request) {
+        return voidFail(resultErrCode).setFrameBizExecute(request.getFrameExecute()).setFrameRequestId(request.getFrameRequestId());
+    }
+
+    public static RestResult<Void> voidFail(ResultErrCodeI resultErrCode, AbstractAdminPageRequest<?> request) {
+        return voidFail(resultErrCode).setFrameBizExecute(request.getFrameExecute()).setFrameRequestId(request.getFrameRequestId());
+    }
+
+    public static RestResult<Void> voidFail(ResultErrCodeI resultErrCode, ApiIncome<?> request) {
+        return voidFail(resultErrCode).setFrameBizExecute(request.getFrameExecute()).setFrameRequestId(request.getFrameRequestId());
     }
 
     /**
@@ -158,6 +205,15 @@ public class RestResult<DATA> implements Serializable {
     }
 
     /**
+     * 异常
+     *
+     * @return {@link RestResult }<{@link ? }>
+     */
+    public static RestResult<?> exception() {
+        return new RestResult<>(ResultErrCodeI.EXCEPTION, ResultErrCodeI.EXCEPTION_MSG);
+    }
+
+    /**
      * 有DATA响应静态失败方法
      *
      * @param resultErrCode resultErrCode
@@ -173,8 +229,16 @@ public class RestResult<DATA> implements Serializable {
      * @param resultErrCode resultErrCode
      * @return {@link RestResult }<{@link ? }>
      */
-    public static RestResult<?> fail(ResultErrCodeI resultErrCode, RestRequestI request) {
-        return fail(resultErrCode).setRequestId(request.getInterfaceRequestId()).setExecute(request.getInterfaceExecute());
+    public static RestResult<?> fail(ResultErrCodeI resultErrCode, AbstractAdminRequest<?> request) {
+        return fail(resultErrCode).setFrameRequestId(request.getFrameRequestId()).setFrameBizExecute(request.getFrameExecute());
+    }
+
+    public static RestResult<?> fail(ResultErrCodeI resultErrCode, AbstractAdminPageRequest<?> request) {
+        return fail(resultErrCode).setFrameRequestId(request.getFrameRequestId()).setFrameBizExecute(request.getFrameExecute());
+    }
+
+    public static RestResult<?> fail(ResultErrCodeI resultErrCode, ApiIncome<?> request) {
+        return fail(resultErrCode).setFrameRequestId(request.getFrameRequestId()).setFrameBizExecute(request.getFrameExecute());
     }
 
     /**

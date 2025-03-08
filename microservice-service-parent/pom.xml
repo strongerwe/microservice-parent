@@ -7,6 +7,7 @@
         <groupId>cn.stronger.we</groupId>
         <artifactId>microservice-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
+        <relativePath/>
     </parent>
     <artifactId>microservice-service-parent</artifactId>
     <packaging>pom</packaging>
@@ -15,30 +16,37 @@
             <dependency>
                 <groupId>cn.stronger.we</groupId>
                 <artifactId>microservice-commons</artifactId>
+                <version>${parent.version}</version>
             </dependency>
             <dependency>
                 <groupId>cn.stronger.we</groupId>
                 <artifactId>microservice-encrypt</artifactId>
+                <version>${parent.version}</version>
             </dependency>
             <dependency>
                 <groupId>cn.stronger.we</groupId>
                 <artifactId>microservice-k8s</artifactId>
+                <version>${parent.version}</version>
             </dependency>
             <dependency>
                 <groupId>cn.stronger.we</groupId>
                 <artifactId>microservice-logs</artifactId>
+                <version>${parent.version}</version>
             </dependency>
             <dependency>
                 <groupId>cn.stronger.we</groupId>
                 <artifactId>microservice-mybatis</artifactId>
+                <version>${parent.version}</version>
             </dependency>
             <dependency>
                 <groupId>cn.stronger.we</groupId>
                 <artifactId>microservice-openfeign</artifactId>
+                <version>${parent.version}</version>
             </dependency>
             <dependency>
                 <groupId>cn.stronger.we</groupId>
                 <artifactId>microservice-redis</artifactId>
+                <version>${parent.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

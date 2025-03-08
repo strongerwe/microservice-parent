@@ -1,9 +1,11 @@
 package cn.stronger.we.commons.framework.request;
 
+import cn.stronger.we.commons.framework.response.SuperResponse;
 import cn.stronger.we.commons.utils.DateTimeTools;
 import cn.stronger.we.commons.utils.StringTools;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
@@ -18,7 +20,8 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public abstract class AbstractAdminRequest implements RestRequestI {
+@EqualsAndHashCode(callSuper = true)
+public abstract class AbstractAdminRequest<T extends SuperResponse> extends AbstractRequest<T> {
 
     /**
      * 登录操作人ID
@@ -31,20 +34,14 @@ public abstract class AbstractAdminRequest implements RestRequestI {
     private String loginDomainId;
 
     /**
-     * 请求ID（单次请求唯一）
-     */
-    private String interfaceRequestId = newRequestId();
-
-    /**
      * 请求执行器
      */
-    private String interfaceExecute;
+    private String frameExecute;
 
     /**
-     * 请求接口版本号(默认Base，即为基础版本)
+     * 请求Id
      */
-    private String interfaceVersion = "Base";
-
+    private String frameRequestId = newRequestId();
 
     private String newRequestId() {
         return "Adm-" + DateTimeTools.getCurrentDateTimes() + "-" + StringTools.newUuid().substring(0, 6);

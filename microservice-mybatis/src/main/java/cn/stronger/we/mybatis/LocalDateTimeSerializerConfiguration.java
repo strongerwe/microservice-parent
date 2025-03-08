@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
  * @author qiang.w
  * @version 1.0.0
  * @class LocalDateTime序列化
- * @department 平台研发部
+ * @department Platform Center
  * @date 2024-09-07 21:26
  */
 @Configuration

@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -20,31 +19,36 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class AdminPageResponse<R> implements Serializable {
+public class AdminPageResponse<R> implements SuperResponse {
     /**
      * 当前页
      */
     private int pageNum;
+
     /**
      * 每页的数量
      */
     private int pageSize;
+
     /**
      * 当前页的数量
      */
     private int size;
+
     /**
      * 总页数
      */
     private int pages;
+
     /**
      * 总数
      */
     private long total;
+
     /**
      * 结果集
      */
-    private List<R> list;
+    private List<R> results;
 
     public AdminPageResponse(PageInfo<?> page, List<R> list) {
         this.size = page.getSize();
@@ -52,6 +56,6 @@ public class AdminPageResponse<R> implements Serializable {
         this.pageNum = page.getPageNum();
         this.pages = page.getPages();
         this.total = page.getTotal();
-        this.list = list;
+        this.results = list;
     }
 }
